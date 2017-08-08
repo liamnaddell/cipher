@@ -4,7 +4,12 @@ import "fmt"
 
 func main() {
 	key := genKey()
-	for k, v := range key {
+	printRpay(key)
+}
+
+//print map of Rune Array
+func printRpay(dag map[rune]rune) {
+	for k, v := range dag {
 		fmt.Printf("\"%s\":\"%s\"\n", string(k), string(v))
 	}
 }
