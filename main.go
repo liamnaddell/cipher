@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	r, _ := GenerateRandomString(22)
+	r, err := GenerateRandomString(52)
+	fmt.Println(err)
 	fmt.Println(r)
 }
