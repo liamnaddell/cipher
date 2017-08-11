@@ -7,7 +7,7 @@ import (
 
 const clear = "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?"
 
-const code = "/.,mnbvcxz';lkjhgfdsa\\][poiuytrewq=-0987654321`?><MNBVCXZ\":LKJHGFDSA|}{POIUYTREWQ+_)(*&^%$#@!~"
+var code string
 
 var clearArray []rune
 var codeArray []rune
@@ -15,6 +15,11 @@ var codeArray []rune
 func init() {
 	clearSplit := strings.Split(clear, "")
 	clearArray = strayToRay(clearSplit)
+	var err error
+	code, err = genKeyCode()
+	if err != nil {
+		fmt.Println(err)
+	}
 	codeSplit := strings.Split(code, "")
 	codeArray = strayToRay(codeSplit)
 }
