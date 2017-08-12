@@ -2,7 +2,6 @@ package main
 
 import "github.com/urfave/cli"
 import "os"
-import "fmt"
 
 func startCli() {
 	var message string
@@ -32,8 +31,7 @@ func startCli() {
 			Category: "Text Options",
 			Usage:    "encode a string",
 			Action: func(c *cli.Context) error {
-				fmt.Printf("encoded string: adfjaldksf, %s, %s\n", message, keyfile)
-				return nil
+				return newEncode(message, keyfile)
 			},
 		},
 		{
@@ -71,8 +69,7 @@ func startCli() {
 			Category: "Text Options",
 			Usage:    "decode a encrypted string",
 			Action: func(c *cli.Context) error {
-				fmt.Println("message: helo wurld", message, keyfile)
-				return nil
+				return newDecode(message, keyfile)
 			},
 		},
 	}
