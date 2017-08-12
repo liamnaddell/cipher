@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	key := genKey()
+	/*key := genKey()
 	//writeRapToFile("secret.jeff", key)
 	//final := decodeRapFromFile("secret.jeff")
 	//printRpay(final)
@@ -19,10 +19,12 @@ func main() {
 		dmsg = append(dmsg, revkey[nmsg[i]])
 	}
 	fmt.Println("decoded:", string(dmsg))
+	*/
+	startCli()
 }
 
-//print map of Rune Array
-func printRpay(dag map[rune]rune) {
+//print map of rune
+func printRap(dag map[rune]rune) {
 	for k, v := range dag {
 		fmt.Printf("[\"%s\":\"%s\"],", string(k), string(v))
 	}
