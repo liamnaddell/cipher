@@ -4,9 +4,21 @@ import "fmt"
 
 func main() {
 	key := genKey()
-	writeRapToFile("secret.jeff", key)
-	final := decodeRapFromFile("secret.jeff")
-	printRpay(final)
+	//writeRapToFile("secret.jeff", key)
+	//final := decodeRapFromFile("secret.jeff")
+	//printRpay(final)
+	msp := []rune("hello world")
+	var nmsg []rune
+	for i := 0; i < len(msp); i++ {
+		nmsg = append(nmsg, key[msp[i]])
+	}
+	fmt.Println("encoded:", string(nmsg))
+	var dmsg []rune
+	revkey := reverserap(key)
+	for i := 0; i < len(nmsg); i++ {
+		dmsg = append(dmsg, revkey[nmsg[i]])
+	}
+	fmt.Println("decoded:", string(dmsg))
 }
 
 //print map of Rune Array
