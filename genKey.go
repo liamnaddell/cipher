@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-const clear = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+const clear = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM,./`!@#$%^&*()-=~_+<> ?;':\"\\"
 
 var code string
 

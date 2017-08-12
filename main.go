@@ -2,12 +2,10 @@ package main
 
 import "fmt"
 
-const message = "hello"
+const message = "hello world"
 
 func main() {
 	key := genKey()
-	printRpay(key)
-	fmt.Println(genKeyCode())
 	msp := []rune(message)
 	var nmsg []rune
 	for i := 0; i < len(msp); i++ {

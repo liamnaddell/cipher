@@ -2,8 +2,6 @@ package main
 
 import (
 	"crypto/rand"
-	//"encoding/base64"
-	"fmt"
 	"log"
 	"math/big"
 )
@@ -16,7 +14,6 @@ func genRandomString(s int) string {
 		st := getToken(1)
 		for q := 0; q < len(previous); q++ {
 			if st == previous[q] {
-				fmt.Println("continue, ", st)
 				c = true
 			}
 		}
@@ -30,6 +27,8 @@ func genRandomString(s int) string {
 	}
 	return rs
 }
+
+// thank you stackOverflow question asker
 func getToken(length int) string {
 	token := ""
 	//codeAlphabet := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -50,33 +49,3 @@ func cryptoRandSecure(max int64) int64 {
 	}
 	return nBig.Int64()
 }
-
-// GenerateRandomString returns a URL-safe, base64 encoded
-// securely generated random string.
-// It will return an error if the system's secure random
-// number generator fails to function correctly, in which
-// case the caller should not continue.
-/*
-func genRandomString(s int) string {
-	var rs string
-	var lnb []string
-	for i := 0; i < s+1; i++ {
-		b, err := genRandomBytes(1)
-		if err != nil {
-			log.Fatal(err)
-		}
-		nb := base64.StdEncoding.EncodeToString(b)
-		tnb, _ := base64.StdEncoding.DecodeString(nb)
-		lnb = append(lnb, nb)
-		for q := 0; q < len(lnb); q++ {
-			if nb == lnb[q] {
-				fmt.Println("Continnue:", nb)
-				continue
-			}
-		}
-		rs = rs + string(tnb)
-	}
-	fmt.Println(lnb)
-	return rs
-}
-*/
