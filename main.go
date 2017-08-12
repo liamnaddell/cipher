@@ -2,23 +2,11 @@ package main
 
 import "fmt"
 
-const message = "hello world"
-
 func main() {
 	key := genKey()
-	msp := []rune(message)
-	var nmsg []rune
-	for i := 0; i < len(msp); i++ {
-		nmsg = append(nmsg, key[msp[i]])
-	}
-	fmt.Println("encoded:", string(nmsg))
-	var dmsg []rune
-	revkey := reverserap(key)
-	for i := 0; i < len(nmsg); i++ {
-		dmsg = append(dmsg, revkey[nmsg[i]])
-	}
-	fmt.Println("decoded:", string(dmsg))
-
+	writeRapToFile("secret.jeff", key)
+	final := decodeRapFromFile("secret.jeff")
+	printRpay(final)
 }
 
 //print map of Rune Array
