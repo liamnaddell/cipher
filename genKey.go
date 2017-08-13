@@ -15,7 +15,10 @@ var codeArray []rune
 func init() {
 	clearSplit := strings.Split(clear, "")
 	clearArray = strayToRay(clearSplit)
-	code = genKeyCode()
+	code, err := genKeyCode()
+	if err != nil {
+		panic(err)
+	}
 	codeSplit := strings.Split(code, "")
 	codeArray = strayToRay(codeSplit)
 }

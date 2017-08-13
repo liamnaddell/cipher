@@ -1,7 +1,11 @@
 package main
 
 import "github.com/urfave/cli"
+
+//import "fmt"
 import "os"
+
+//import "errors"
 
 func startCli() {
 	var message string
@@ -31,7 +35,17 @@ func startCli() {
 			Category: "Text Options",
 			Usage:    "encode a string",
 			Action: func(c *cli.Context) error {
-				return newEncode(message, keyfile)
+				if message == "" {
+					if len(c.Args()) < 1 {
+						return cli.NewExitError("No message given", 1)
+					}
+					message = c.Args()[0]
+					//return errors.New("stupid idiot")
+					return cli.NewExitError(newEncode(message, keyfile), 1)
+				} else {
+					return cli.NewExitError(newFileEncode(message, keyfile), 1)
+				}
+				return nil
 			},
 		},
 		{
@@ -41,13 +55,13 @@ func startCli() {
 			Flags: []cli.Flag{
 				cli.StringFlag{
 					Name:        "k, keyfile",
-					Usage:       "specify a file, otherwise your tty will not be happy",
+					Usage:       "specify a file, or else",
 					Destination: &keyfile,
 				},
 			},
 			Usage: "generate a key and store it in a file or print to stdout",
 			Action: func(c *cli.Context) error {
-				return newKey(keyfile)
+				return cli.NewExitError(newKey(keyfile), 1)
 			},
 		},
 		{
@@ -69,7 +83,16 @@ func startCli() {
 			Category: "Text Options",
 			Usage:    "decode a encrypted string",
 			Action: func(c *cli.Context) error {
-				return newDecode(message, keyfile)
+				if message == "" {
+					if len(c.Args()) < 1 {
+						return cli.NewExitError("No message to decode given", 1)
+					}
+					message = c.Args()[0]
+					return cli.NewExitError(newDecode(message, keyfile), 1)
+				} else {
+					return cli.NewExitError(newFileDecode(message, keyfile), 1)
+				}
+				return nil
 			},
 		},
 	}

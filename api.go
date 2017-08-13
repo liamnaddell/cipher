@@ -8,6 +8,7 @@ import "io/ioutil"
 func newKey(keyfile string) error {
 	var err error
 	key := genKey()
+	// here
 	writeRapToFile(keyfile, key)
 	return err
 }
@@ -18,10 +19,20 @@ func checkerr(err error) {
 	}
 }
 
-func newEncode(message string, keyfile string) error {
-	var err error
-	key := decodeRapFromFile(keyfile)
+func newFileEncode(messagefile string, keyfile string) error {
+	message, err := ioutil.ReadFile(messagefile)
+	if err != nil {
+		return err
+	}
 	//printRap(key)
+	msp := string(message)
+	return newEncode(msp, keyfile)
+}
+func newEncode(message string, keyfile string) error {
+	key, err := decodeRapFromFile(keyfile)
+	if err != nil {
+		return err
+	}
 	msp := []rune(message)
 	var nmsg []rune
 	for i := 0; i < len(msp); i++ {
@@ -31,20 +42,29 @@ func newEncode(message string, keyfile string) error {
 	return err
 }
 
-func newDecode(messagefile string, keyfile string) error {
+func newDecode(message string, keyfile string) error {
 	var err error
-	nmessage, err := ioutil.ReadFile(messagefile)
+	key, err := decodeRapFromFile(keyfile)
 	if err != nil {
 		return err
 	}
-	var message = []rune(string(nmessage))
-	key := decodeRapFromFile(keyfile)
 	//printRap(key)
 	var dmsg []rune
+	var msp = []rune(message)
 	revkey := reverserap(key)
 	for i := 0; i < len(message); i++ {
-		dmsg = append(dmsg, revkey[message[i]])
+		dmsg = append(dmsg, revkey[msp[i]])
 	}
 	fmt.Println("decoded:", string(dmsg))
 	return err
+}
+
+func newFileDecode(messagefile string, keyfile string) error {
+	nmessage, err := ioutil.ReadFile(messagefile)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+	var rmessage = string(nmessage)
+	return newDecode(rmessage, keyfile)
 }
