@@ -1,6 +1,7 @@
 package main
 
 import "github.com/urfave/cli"
+import "github.com/liamnaddell/cipher/lib"
 
 //import "fmt"
 import "os"
@@ -41,9 +42,9 @@ func startCli() {
 					}
 					message = c.Args()[0]
 					//return errors.New("stupid idiot")
-					return cli.NewExitError(newEncode(message, keyfile), 1)
+					return cli.NewExitError(cipher.NewEncode(message, keyfile), 1)
 				} else {
-					return cli.NewExitError(newFileEncode(message, keyfile), 1)
+					return cli.NewExitError(cipher.NewFileEncode(message, keyfile), 1)
 				}
 				return nil
 			},
@@ -61,7 +62,7 @@ func startCli() {
 			},
 			Usage: "generate a key and store it in a file or print to stdout",
 			Action: func(c *cli.Context) error {
-				return cli.NewExitError(newKey(keyfile), 1)
+				return cli.NewExitError(cipher.NewKey(keyfile), 1)
 			},
 		},
 		{
@@ -88,9 +89,9 @@ func startCli() {
 						return cli.NewExitError("No message to decode given", 1)
 					}
 					message = c.Args()[0]
-					return cli.NewExitError(newDecode(message, keyfile), 1)
+					return cli.NewExitError(cipher.NewDecode(message, keyfile), 1)
 				} else {
-					return cli.NewExitError(newFileDecode(message, keyfile), 1)
+					return cli.NewExitError(cipher.NewFileDecode(message, keyfile), 1)
 				}
 				return nil
 			},

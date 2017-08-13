@@ -1,11 +1,11 @@
-package main
+package cipher
 
 import "fmt"
 import "io/ioutil"
 
 //wraps up the api for the cli to use
 
-func newKey(keyfile string) error {
+func NewKey(keyfile string) error {
 	var err error
 	key := genKey()
 	// here
@@ -19,16 +19,16 @@ func checkerr(err error) {
 	}
 }
 
-func newFileEncode(messagefile string, keyfile string) error {
+func NewFileEncode(messagefile string, keyfile string) error {
 	message, err := ioutil.ReadFile(messagefile)
 	if err != nil {
 		return err
 	}
 	//printRap(key)
 	msp := string(message)
-	return newEncode(msp, keyfile)
+	return NewEncode(msp, keyfile)
 }
-func newEncode(message string, keyfile string) error {
+func NewEncode(message string, keyfile string) error {
 	key, err := decodeRapFromFile(keyfile)
 	if err != nil {
 		return err
@@ -42,7 +42,7 @@ func newEncode(message string, keyfile string) error {
 	return err
 }
 
-func newDecode(message string, keyfile string) error {
+func NewDecode(message string, keyfile string) error {
 	var err error
 	key, err := decodeRapFromFile(keyfile)
 	if err != nil {
@@ -51,7 +51,7 @@ func newDecode(message string, keyfile string) error {
 	//printRap(key)
 	var dmsg []rune
 	var msp = []rune(message)
-	revkey := reverserap(key)
+	revkey := Reverserap(key)
 	for i := 0; i < len(message); i++ {
 		dmsg = append(dmsg, revkey[msp[i]])
 	}
@@ -59,12 +59,27 @@ func newDecode(message string, keyfile string) error {
 	return err
 }
 
-func newFileDecode(messagefile string, keyfile string) error {
+func NewFileDecode(messagefile string, keyfile string) error {
 	nmessage, err := ioutil.ReadFile(messagefile)
 	if err != nil {
 		fmt.Println(err)
 		return err
 	}
 	var rmessage = string(nmessage)
-	return newDecode(rmessage, keyfile)
+	return NewDecode(rmessage, keyfile)
+}
+
+func PrintRap(dag map[rune]rune) {
+	for k, v := range dag {
+		fmt.Printf("[\"%s\":\"%s\"],", string(k), string(v))
+	}
+}
+
+//reverse rune array map
+func Reverserap(rap map[rune]rune) map[rune]rune {
+	var revrap = make(map[rune]rune)
+	for k, v := range rap {
+		revrap[v] = k
+	}
+	return revrap
 }

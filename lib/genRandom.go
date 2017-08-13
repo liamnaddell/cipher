@@ -1,4 +1,4 @@
-package main
+package cipher
 
 import (
 	"crypto/rand"
