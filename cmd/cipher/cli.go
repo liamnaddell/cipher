@@ -1,7 +1,7 @@
 package main
 
 import "github.com/urfave/cli"
-import "github.com/liamnaddell/cipher/lib"
+import "github.com/liamnaddell/cipher"
 
 //import "fmt"
 import "os"
