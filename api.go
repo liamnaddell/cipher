@@ -62,7 +62,6 @@ func NewDecode(message string, keyfile string) error {
 func NewFileDecode(messagefile string, keyfile string) error {
 	nmessage, err := ioutil.ReadFile(messagefile)
 	if err != nil {
-		fmt.Println(err)
 		return err
 	}
 	var rmessage = string(nmessage)

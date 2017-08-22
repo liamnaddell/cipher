@@ -1,7 +1,6 @@
 package cipher
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -32,8 +31,6 @@ func strayToRay(split []string) (array []rune) {
 }
 
 func genKey() map[rune]rune {
-	fmt.Println(len(clear))
-	fmt.Println(len(code))
 	var i int
 	var key = make(map[rune]rune)
 	for {
