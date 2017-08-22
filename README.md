@@ -20,7 +20,7 @@ This program is a _TEST_ and _TEST_ only, it is not a _STRONG_ cipher, and shoul
 
 ```
 NAME:
-   cipher - Liam Naddell's terrible encryption program
+   cipher - Liam Naddell's basic encryption program
 
 USAGE:
    cipher [global options] command [command options] [arguments...]

@@ -12,7 +12,7 @@ func startCli() {
 	app := cli.NewApp()
 	app.Name = "cipher"
 	app.Version = Version
-	app.Usage = "Liam Naddell's terrible encryption program"
+	app.Usage = "Liam Naddell's basic encryption program"
 	app.Copyright = "©️ Liam Naddell github.com/liamnaddell/cipher"
 	app.Commands = []cli.Command{
 		{
