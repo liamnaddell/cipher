@@ -4,7 +4,7 @@ my cipher program
 
 ## DISCLAIMER: 
 
-This program is a *TEST* and *TEST* only, it is not a *STRONG* cipher, and should *NOT* be used when encrypting important data
+This program is a _TEST_ and _TEST_ only, it is not a _STRONG_ cipher, and should _NOT_ be used when encrypting important data
 
 ## Usage
 

@@ -12,7 +12,7 @@ all:
 	
 
 install:
-	mv cipher $(FINAL)
+	cp cipher $(FINAL)
 
 clean:
 	rm -f cipher
