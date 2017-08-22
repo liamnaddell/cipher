@@ -9,7 +9,7 @@ This program is a _TEST_ and _TEST_ only, it is not a _STRONG_ cipher, and shoul
 ## Installing
 
 * firstly, we need to get the software, you can do this by entering `go get -d github.com/liamnaddell/cipher` 
-* we change directories to the source directory with `cd $(GOPATH)/src/github.com/liamnaddell/cipher`
+* we change directories to the source directory with `cd $GOPATH/src/github.com/liamnaddell/cipher`
 * we get the official golang dependancy management tool with `go get -u github.com/golang/dep/cmd/dep`
 * Compile the software with `make`
 * Install it to `/usr/local/bin` with `sudo make install`
