@@ -2,8 +2,6 @@ package main
 
 import "github.com/urfave/cli"
 import "github.com/liamnaddell/cipher"
-
-//import "fmt"
 import "os"
 
 //import "errors"
@@ -37,15 +35,21 @@ func startCli() {
 			Category: "Text Options",
 			Usage:    "encode a string",
 			Action: func(c *cli.Context) error {
+				var err error
 				if message == "" {
 					if len(c.Args()) < 1 {
 						return cli.NewExitError("No message given", 1)
 					}
 					message = c.Args()[0]
-					//return errors.New("stupid idiot")
-					return cli.NewExitError(cipher.NewEncode(message, keyfile), 1)
+					err := cipher.NewEncode(message, keyfile)
+					if err != nil {
+						return cli.NewExitError(err, 1)
+					}
 				} else {
-					return cli.NewExitError(cipher.NewFileEncode(message, keyfile), 1)
+					err = cipher.NewFileEncode(message, keyfile)
+					if err != nil {
+						return cli.NewExitError(err, 1)
+					}
 				}
 				return nil
 			},
@@ -63,7 +67,11 @@ func startCli() {
 			},
 			Usage: "generate a key and store it in a file or print to stdout",
 			Action: func(c *cli.Context) error {
-				return cli.NewExitError(cipher.NewKey(keyfile), 1)
+				err := cipher.NewKey(keyfile)
+				if err != nil {
+					return cli.NewExitError(err, 1)
+				}
+				return nil
 			},
 		},
 		{
@@ -90,9 +98,15 @@ func startCli() {
 						return cli.NewExitError("No message to decode given", 1)
 					}
 					message = c.Args()[0]
-					return cli.NewExitError(cipher.NewDecode(message, keyfile), 1)
+					err := cipher.NewDecode(message, keyfile)
+					if err != nil {
+						return cli.NewExitError(err, 1)
+					}
 				} else {
-					return cli.NewExitError(cipher.NewFileDecode(message, keyfile), 1)
+					err := cipher.NewFileDecode(message, keyfile)
+					if err != nil {
+						return cli.NewExitError(err, 1)
+					}
 				}
 				return nil
 			},

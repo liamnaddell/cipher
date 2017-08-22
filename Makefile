@@ -15,8 +15,8 @@ install:
 	mv cipher $(FINAL)
 
 clean:
-	rm cipher
-	rm -r vendor/
+	rm -f cipher
+	rm -rf vendor/
 
 uninstall:
 	rm $(FINAL)/cipher
