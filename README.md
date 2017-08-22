@@ -6,6 +6,16 @@ my cipher program
 
 This program is a _TEST_ and _TEST_ only, it is not a _STRONG_ cipher, and should _NOT_ be used when encrypting important data
 
+## Installing
+
+* firstly, we need to get the software, you can do this by entering `go get -d github.com/liamnaddell/cipher` 
+* we change directories to the source directory with `cd $(GOPATH)/src/github.com/liamnaddell/cipher`
+* we get the official golang dependancy management tool with `go get -u github.com/golang/dep/cmd/dep`
+* Compile the software with `make`
+* Install it to `/usr/local/bin` with `sudo make install`
+* Profit
+
+
 ## Usage
 
 ```
@@ -42,3 +52,12 @@ cipher encode "my (hopefully not important) message is this text, this text is s
 cipher decode $(whatever was output by the last command) -k mykey.lek
 ```
 
+## Uninstalling
+
+`sudo make uninstall`
+
+Please if you could be so kind, tell me if there are issues with the software thus causing you to uninstall it
+
+## Fin
+
+If you wish to know anything else about this software, please leave an issue about what needs to be explained, who knows, maybe it will be implemented into these docs in the future.
